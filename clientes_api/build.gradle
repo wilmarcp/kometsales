@@ -1,0 +1,78 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('mysql:mysql-connector-java:5.1.46')
+	}
+}
+
+plugins {
+    id 'org.flywaydb.flyway' version '5.1.4'
+}
+
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.kometsales.prueba'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+loadConfiguration()
+
+//Se carga la configuracion de base de datos para flyway
+def loadConfiguration() {
+	if (project.hasProperty('env')) {
+	    def environment = env
+	    project.ext.environment = environment
+	
+	    def configFile = file('environments.groovy')
+	    println configFile.toURL()
+	
+	    def config = new ConfigSlurper("$environment").parse(configFile.toURL())
+	    project.ext.config = config
+	}
+}
+
+flyway {
+	if (project.hasProperty('config')) {
+	    url = "${config.flywayProperties.url}"
+	    user = "${config.flywayProperties.user}"
+	    password = "${config.flywayProperties.password}"
+	    locations = Eval.me("${config.flywayProperties.locations}")
+		outOfOrder = "${config.flywayProperties.outOfOrder}"
+		
+		println "Configurando FlyWay en $environment"
+		println "URL:  $config.flywayProperties.url"
+		println "User:  $config.flywayProperties.user"
+		println "Locations:  $config.flywayProperties.locations"
+		println "outOfOrder:  ${config.flywayProperties.outOfOrder}"
+	}
+}
+
+war {
+	
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	
+	//Base de datos
+	compile 'javax.transaction:javax.transaction-api:1.2'
+	compile 'org.hibernate:hibernate-core'
+	compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+	runtime 'mysql:mysql-connector-java'
+	
+	testCompile 'io.rest-assured:rest-assured'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
