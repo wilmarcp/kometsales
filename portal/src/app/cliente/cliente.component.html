@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="titulo">Información del cliente</div>
+  <form [formGroup]='formularioCliente' (ngSubmit)="onSubmit()">
+    <div class='formulario'>
+        <mat-form-field>
+          <input matInput #nombres maxlength="200" placeholder="Nombres completos" formControlName='nombres' required>
+          <mat-hint align="start">{{nombres.value.length}}/<strong>200</strong> </mat-hint>
+          <mat-error *ngIf='controlsCliente.controls.nombres.errors'>Ingresa un nombre válido</mat-error>
+        </mat-form-field>
+        <div class="grid-2-columns">
+          <mat-form-field>
+            <input matInput #primerApellido maxlength="200" placeholder="Primer Apellido" formControlName='primerApellido' required>
+            <mat-hint align="start">{{primerApellido.value.length}}/<strong>200</strong> </mat-hint>
+            <mat-error *ngIf='controlsCliente.controls.primerApellido.errors'>Ingresa un apellido válido</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput #segundoApellido maxlength="200" placeholder="Segundo Apellido" formControlName='segundoApellido'>
+            <mat-hint align="start">{{segundoApellido.value.length}}/<strong>200</strong> </mat-hint>
+            <mat-error *ngIf='controlsCliente.controls.segundoApellido.errors'>Ingresa un apellido válido</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <input matInput #identificacion maxlength="35" placeholder="Identificación" formControlName='identificacion' required>
+          <mat-hint align="start">{{identificacion.value.length}}/<strong>35</strong> </mat-hint>
+          <mat-error *ngIf='controlsCliente.controls.identificacion.errors'>Ingresa una identificación válida</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput #ciudad maxlength="20" placeholder="Ciudad" formControlName='ciudad' required>
+          <mat-hint align="start">{{ciudad.value.length}}/<strong>20</strong> </mat-hint>
+          <mat-error *ngIf='controlsCliente.controls.ciudad.errors'>Ingresa una ciudad válida</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput #direccion maxlength="255" placeholder="Dirección" formControlName='direccion' required>
+          <mat-hint align="start">{{direccion.value.length}}/<strong>255</strong> </mat-hint>
+          <mat-error *ngIf='controlsCliente.controls.direccion.errors'>Ingresa un direccion válida</mat-error>
+        </mat-form-field>
+        <div class="grid-2-columns">
+          <mat-form-field>
+          <input matInput #telefono maxlength="20" placeholder="Teléfono" formControlName='telefono' required>
+          <mat-hint align="start">{{telefono.value.length}}/<strong>20</strong> </mat-hint>
+          <mat-error *ngIf='controlsCliente.controls.telefono.errors'>Ingresa un telefono válido</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput #celular maxlength="20" placeholder="Celular" formControlName='celular' required>
+            <mat-hint align="start">{{celular.value.length}}/<strong>20</strong> </mat-hint>
+            <mat-error *ngIf='controlsCliente.controls.celular.errors'>Ingresa un celular válido</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <input matInput #email maxlength="255" placeholder="Email" formControlName='email' required>
+          <mat-hint align="start">{{email.value.length}}/<strong>255</strong> </mat-hint>
+          <mat-error *ngIf='controlsCliente.controls.email.errors'>Ingresa un email válido</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button mat-raised-button color="primary" type="submit">Guardar</button>
+      </div>
+  </form>
+</div>

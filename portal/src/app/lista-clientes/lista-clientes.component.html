@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="titulo">Clientes activos</div>
+  <div class="grid-clientes">
+    <div [ngClass]="{'caja-grid':cliente, 'caja-grid-selected': cliente.checked}" *ngFor="let cliente of clientes">
+      <div class="texto">
+        <div><strong> {{cliente.nombres | uppercase}}</strong></div>
+        <div><strong>Identificación:</strong> {{cliente.identificacion}}</div>
+        <div><strong>Email:</strong>  {{cliente.email | lowercase}}</div>
+        <div><strong>Dirección:</strong>  {{cliente.direccion | lowercase}}</div>
+        <div>
+          <button mat-button color="primary" (click)='eliminar(cliente)'>Eliminar</button>
+          <button mat-button color="primary" (click)='modificar(cliente)'>Modificar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

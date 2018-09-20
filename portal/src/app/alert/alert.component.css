@@ -1,0 +1,27 @@
+.alert-success{
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    gap: 13px;
+    background-color: rgb(217, 247, 217);
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;  
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: 12px;
+    color: rgb(90, 85, 85);
+}
+
+.alert-error {
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    gap: 13px;
+    background-color: rgb(235, 157, 157);
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;  
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: 12px;
+    color: rgb(90, 85, 85);
+}
